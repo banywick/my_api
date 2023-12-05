@@ -1,0 +1,42 @@
+.wrapper {
+    width: 80%;
+    height: 100vh;
+    background: grey;
+    margin: 0 auto;
+}
+
+header {
+    height: 150px;
+    border: 2px solid black;
+    background: coral;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+
+}
+
+.info {
+    display: flex;
+    align-items: center;
+}
+
+#view_all {
+
+    background: cadetblue;
+    border: 2px solid black;
+    height: 100px;
+    width: 200px;
+    box-shadow: 1px -3px 65px -11px rgba(34, 60, 80, 0.92) inset;
+}
+
+#view_all:hover{
+    border: 3px solid lightskyblue;
+    cursor: pointer;
+}
+
+
+#view_all h2{
+    text-align: center;
+
+}
