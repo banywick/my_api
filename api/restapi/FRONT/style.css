@@ -1,7 +1,6 @@
 .wrapper {
     width: 80%;
     height: 100vh;
-    background: grey;
     margin: 0 auto;
 }
 
@@ -30,13 +29,59 @@ header {
     box-shadow: 1px -3px 65px -11px rgba(34, 60, 80, 0.92) inset;
 }
 
-#view_all:hover{
+#view_all:hover {
     border: 3px solid lightskyblue;
     cursor: pointer;
 }
 
 
-#view_all h2{
+#view_all h2 {
     text-align: center;
 
+}
+
+#main {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+}
+
+
+.category_item {
+    height: 50px;
+    border: 2px solid black;
+    background: cornflowerblue;
+
+}
+
+.product {
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #cacaca;
+    box-shadow: 3px 2px 3px #cacaca;
+    border-radius: 3px;
+}
+
+.product .product__title {
+
+}
+
+.product img {
+    width: 100%;
+    max-width: 200px;
+    object-fit: cover;
+
+}
+
+.product .product__price {
+
+}
+
+.product .product__category {
+
+}
+
+.cat{
+    display: inline-block;
 }
