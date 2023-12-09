@@ -9,8 +9,12 @@ class ProductAPI(ListAPIView):
     serializer_class = ProductSerializer
 
 
-
 class CategoryAPI(ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+
+class FilterCatAPI(ListAPIView):
+    def get(self, request, id):
+        queryset = Product.objects.filter(category_id=request.query_params)
+        serializer_class = ProductSerializer

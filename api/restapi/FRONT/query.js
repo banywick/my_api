@@ -1,17 +1,26 @@
-let button = document.querySelector('#view_all')
-button.addEventListener('click', getProducts)
+const API_URL = 'http://127.0.0.1:8000';
+
+function initRefreshBtn() {
+    let button = document.querySelector('#view_all')
+    button.addEventListener('click', getProducts)
+
+
+}
+
 
 document.addEventListener("DOMContentLoaded", init);
 
 
 function init() {
+    getCategory();
+    initRefreshBtn();
     getProducts();
 }
 
 
-function getProducts() {
+function getProducts(id) {
 
-    fetch('http://127.0.0.1:8000/product_view/')
+    fetch(API_URL + `/product_view/${id ? id : ''}`)
         .then(resp => resp.json())
         .then(renderProduct)
 }
@@ -36,26 +45,46 @@ const renderProduct = (data) => {
 
 }
 
-document.addEventListener("DOMContentLoaded", get_cat);
-const  cat = document.querySelector('#cat_view')
-    function get_cat() {
-        fetch('http://127.0.0.1:8000/category/')
+
+function getCategory() {
+
+
+    fetch(API_URL + '/category/')
         .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            data.map(item=>{
-                cat.innerHTML+=   `<ul class="cat">
-                                    <li>${item.title}</li>
-                                    </ul>`
+        .then(renderCategories)
 
-
-
-
-   })
-        })
 
 }
 
+
+const renderCategories = (data) => {
+    const catContainer = document.querySelector('#cat_view')
+    const list = document.createElement('ul')
+    data.forEach(el => {
+        const li = document.createElement('li')
+        li.textContent = el.title;
+        li.addEventListener('click', ()=>{
+            console.log(el)
+            getProducts(el.id)
+
+
+        })
+        list.appendChild(li)
+
+
+    })
+    // cat.innerHTML += `<ul class="cat">
+    //                                 <li>${item.title}</li>
+    //                                 </ul>`
+
+
+    console.log(data)
+
+
+    catContainer.appendChild(list)
+
+
+}
 
 
 

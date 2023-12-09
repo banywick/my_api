@@ -82,6 +82,13 @@ header {
 
 }
 
-.cat{
+#cat_view ul li {
     display: inline-block;
+    padding-right: 10px;
+}
+
+.cat :hover{
+    cursor: pointer;
+    color: darkorange;
+
 }
