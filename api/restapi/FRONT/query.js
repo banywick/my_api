@@ -2,31 +2,37 @@ const API_URL = 'http://127.0.0.1:8000';
 
 function initRefreshBtn() {
     let button = document.querySelector('#view_all')
-    button.addEventListener('click', getProducts)
-
-
+    button.addEventListener('click', refresh)
 }
-
-
 document.addEventListener("DOMContentLoaded", init);
 
 
 function init() {
     getCategory();
     initRefreshBtn();
-    getProducts();
+    getAllProducts();
+}
+
+const refresh = () => {
+    getAllProducts();
 }
 
 
-function getProducts(id) {
+function getProductsFilter(id) {
 
-    fetch(API_URL + `/product_view/${id ? id : ''}`)
+    fetch(API_URL + `/product_filter/${id ? id : ''}`)
         .then(resp => resp.json())
         .then(renderProduct)
 }
 
-const renderProduct = (data) => {
+function getAllProducts() {
+    fetch(API_URL + /products/)
+        .then(resp => resp.json())
+        .then(renderProduct)
 
+}
+
+const renderProduct = (data) => {
     const productContainer = document.querySelector('#main')
     productContainer.innerHTML = '';
     const productsList = data.map(item => {
@@ -47,13 +53,9 @@ const renderProduct = (data) => {
 
 
 function getCategory() {
-
-
     fetch(API_URL + '/category/')
         .then(response => response.json())
         .then(renderCategories)
-
-
 }
 
 
@@ -63,24 +65,14 @@ const renderCategories = (data) => {
     data.forEach(el => {
         const li = document.createElement('li')
         li.textContent = el.title;
-        li.addEventListener('click', ()=>{
+        li.addEventListener('click', () => {
             console.log(el)
-            getProducts(el.id)
-
-
+            getProductsFilter(el.id)
         })
         list.appendChild(li)
 
-
     })
-    // cat.innerHTML += `<ul class="cat">
-    //                                 <li>${item.title}</li>
-    //                                 </ul>`
-
-
     console.log(data)
-
-
     catContainer.appendChild(list)
 
 
